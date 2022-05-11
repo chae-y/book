@@ -8,9 +8,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 @RunWith(SpringRunner.class)//테스트를 진행 할 때 junit에 내장된 실행자 외에 다른 실행자를 실행시킵니다, 즉 스프링부트 테스트와 junit사이에 연결자 역할
@@ -27,5 +27,18 @@ public class HelloControllerTest extends TestCase {
         mvc.perform(get("/hello"))//mockMvc를 통해 /hello로 get 요청을 보냄, 체이닝이 지원되어 여러검증을 이어서 할 수 있음
                 .andExpect(status().isOk()) // mvc.perform의 결과를 검증, header의 status를 검증 200인지 검증하는거
                 .andExpect(content().string(hello));//응답본문의 내용 검증 "hello"가 맞는지 검증
+    }
+
+    @Test
+    public void test_helloDto가_리턴() throws Exception {
+        String name = "hello";
+        int amount = 10000;
+
+        mvc.perform(get("/hello/dto")
+                .param("name", name)
+                .param("amount", String.valueOf(amount)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(name)))//json 응답값을 필드별로 검증
+                .andExpect(jsonPath("$.amount", is(amount)));
     }
 }
