@@ -1,14 +1,13 @@
 package com.book.diary.web.dto;
 
-import junit.framework.TestCase;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class HelloResponseDtoTest extends TestCase {
+public class HelloResponseDtoTest {
 
     @Test
-    public void test_롬복_기능(){ //test를 앞에 붙여야 실행돼
+    public void 롬복_기능(){ //test를 앞에 붙여야 실행돼
         //given
         String name = "test";
         int amount = 1000;

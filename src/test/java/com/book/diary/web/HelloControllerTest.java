@@ -1,6 +1,5 @@
 package com.book.diary.web;
 
-import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)//테스트를 진행 할 때 junit에 내장된 실행자 외에 다른 실행자를 실행시킵니다, 즉 스프링부트 테스트와 junit사이에 연결자 역할
 @WebMvcTest(controllers = HelloController.class)
-public class HelloControllerTest extends TestCase {
+public class HelloControllerTest{
 
     @Autowired//스프링이 관리하는 빈을 주입받는다
     private MockMvc mvc; // 웹 api를 테스트할 때 사용
@@ -30,7 +29,7 @@ public class HelloControllerTest extends TestCase {
     }
 
     @Test
-    public void test_helloDto가_리턴() throws Exception {
+    public void helloDto가_리턴() throws Exception {
         String name = "hello";
         int amount = 10000;
 
